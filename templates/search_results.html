@@ -1,0 +1,27 @@
+{% for cafe in results %}
+
+<div class="col mb-5">
+  <div class="card h-100 shadow-sm border-0">
+    <!-- Cafe image-->
+    <img
+      class="card-img-top img-fluid custom-img"
+      style="height: 200px; object-fit: cover; width: 100%"
+      src="{{cafe.img_url}}"
+      alt="{{cafe.name}}"
+    />
+    <!-- Cafe details-->
+    <div class="card-body p-4 text-center">
+      <h5 class="fw-bolder">{{cafe.name}}</h5>
+      <p class="text-muted">{{cafe.location}}</p>
+    </div>
+    <!-- Cafe actions-->
+    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+      <a
+        class="btn btn-outline-dark mt-auto"
+        href="{{url_for('cafe', id=cafe.id)}}"
+        >View Details</a
+      >
+    </div>
+  </div>
+</div>
+{% endfor %}

@@ -1,0 +1,194 @@
+{% extends 'base.html' %} {% block body %}
+<section class="py-5 bg-light">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="card border-0 shadow-sm rounded-3 p-4">
+      <div class="row gx-4 gx-lg-5 align-items-center justify-content-center">
+        <div class="col-md-8">
+          <h1 class="display-5 fw-bolder mb-4 text-center">
+            {{ 'Update Cafe' if cafe else 'Add New Cafe' }}
+          </h1>
+          <form
+            action="{{ url_for('update_cafe', id=cafe.id) if cafe else url_for('add_cafe') }}"
+            method="POST"
+          >
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                value="{{ cafe.name if cafe else '' }}"
+                class="form-control"
+                id="name"
+                placeholder="Name"
+                name="name"
+                required
+              />
+            </div>
+
+            <!-- Map URL -->
+            <div class="mb-3">
+              <label for="map_url" class="form-label">Map URL</label>
+              <input
+                type="url"
+                class="form-control"
+                value="{{ cafe.map_url if cafe else '' }}"
+                id="map_url"
+                name="map_url"
+                placeholder="Map URL"
+                required
+              />
+            </div>
+
+            <!-- Image URL -->
+            <div class="mb-3">
+              <label for="img_url" class="form-label">Image URL</label>
+              <input
+                type="url"
+                class="form-control"
+                value="{{ cafe.img_url if cafe else '' }}"
+                id="img_url"
+                name="img_url"
+                placeholder="Image URL"
+              />
+            </div>
+
+            <!-- Location -->
+            <div class="mb-3">
+              <label for="location" class="form-label">Location</label>
+              <input
+                type="text"
+                class="form-control"
+                value="{{ cafe.location if cafe else '' }}"
+                id="location"
+                name="location"
+                placeholder="Location"
+                required
+              />
+            </div>
+
+            <!-- Boolean Options -->
+            <div class="mb-3">
+              <label for="amenities" class="form-label">Amenities</label><br />
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="has_sockets"
+                  name="has_sockets"
+                  {%
+                  if
+                  cafe
+                  and
+                  cafe.has_sockets
+                  %}
+                  checked
+                  {%
+                  endif
+                  %}
+                />
+                <label class="form-check-label" for="has_sockets"
+                  >Has Sockets</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="has_toilet"
+                  name="has_toilet"
+                  {%
+                  if
+                  cafe
+                  and
+                  cafe.has_toilet
+                  %}
+                  checked
+                  {%
+                  endif
+                  %}
+                />
+                <label class="form-check-label" for="has_toilet"
+                  >Has Toilet</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="has_wifi"
+                  name="has_wifi"
+                  {%
+                  if
+                  cafe
+                  and
+                  cafe.has_wifi
+                  %}
+                  checked
+                  {%
+                  endif
+                  %}
+                />
+                <label class="form-check-label" for="has_wifi">Has Wi-Fi</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="can_take_calls"
+                  name="can_take_calls"
+                  {%
+                  if
+                  cafe
+                  and
+                  cafe.can_take_calls
+                  %}
+                  checked
+                  {%
+                  endif
+                  %}
+                />
+                <label class="form-check-label" for="can_take_calls"
+                  >Can Take Calls</label
+                >
+              </div>
+            </div>
+
+            <!-- Seats -->
+            <div class="mb-3">
+              <label for="seats" class="form-label">Seats</label>
+              <input
+                type="text"
+                class="form-control"
+                value="{{ cafe.seats if cafe else '' }}"
+                id="seats"
+                name="seats"
+                placeholder="Number of Seats"
+              />
+            </div>
+
+            <!-- Coffee Price -->
+            <div class="mb-3">
+              <label for="coffee_price" class="form-label">Coffee Price</label>
+              <input
+                type="text"
+                class="form-control"
+                value="{{ cafe.coffee_price if cafe else '' }}"
+                id="coffee_price"
+                name="coffee_price"
+                placeholder="Coffee Price"
+              />
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid gap-2 mt-4">
+              <button type="submit" class="btn btn-outline-dark btn-lg">
+                {{ 'Update' if cafe else 'Add' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock body %}

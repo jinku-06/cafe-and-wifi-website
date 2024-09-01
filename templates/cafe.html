@@ -1,0 +1,104 @@
+{% extends 'base.html' %} {% block body %}
+
+<section class="py-5 bg-light">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="card border-0 shadow-sm rounded-3 p-4">
+      <div class="row gx-4 gx-lg-5 align-items-center">
+        <!-- Cafe Image -->
+        <div class="col-md-6 mb-4 mb-md-0">
+          <img
+            class="img-fluid rounded-3 shadow-sm"
+            src="{{ cafe_data.img_url }}"
+            alt="{{ cafe_data.name }}"
+          />
+        </div>
+
+        <!-- Cafe Details -->
+        <div class="col-md-6">
+          <h1 class="display-5 fw-bolder mb-2">{{ cafe_data.name }}</h1>
+          <p class="text-muted mb-3">Seats: {{ cafe_data.seats }}</p>
+
+          <!-- Location and Price -->
+          <div class="mb-4">
+            <p class="lead">
+              <a
+                href="{{ cafe_data.map_url }}"
+                class="text-decoration-none text-dark"
+              >
+                <i class="bi bi-geo-alt"></i> {{ cafe_data.location }}
+              </a>
+            </p>
+            <h3 class="fw-normal">
+              Coffee Price: {{ cafe_data.coffee_price }}
+            </h3>
+          </div>
+
+          <!-- Features Section -->
+          <div class="mb-4">
+            <!-- Features Badges -->
+            {% if cafe_data.has_sockets == 1 %}
+            <span class="badge bg-secondary text-white me-2">
+              <i class="bi bi-plug"></i> Sockets
+            </span>
+            {% endif %} {% if cafe_data.has_toilet == 1 %}
+            <span class="badge bg-secondary text-white me-2">
+              <i class="bi bi-toilet"></i>🚽 Toilet
+            </span>
+            {% endif %} {% if cafe_data.has_wifi == 1 %}
+            <span class="badge bg-secondary text-white me-2">
+              <i class="bi bi-wifi"></i> Wifi
+            </span>
+            {% endif %} {% if cafe_data.can_take_calls == 1 %}
+            <span class="badge bg-secondary text-white me-2">
+              <i class="bi bi-telephone"></i> Calls
+            </span>
+            {% endif %}
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="d-grid gap-2">
+            <a
+              href="{{ cafe_data.map_url }}"
+              class="btn btn-outline-dark btn-lg"
+            >
+              Visit Cafe Location <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Upcoming Events Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold mb-4">Upcoming Events</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Live Jazz Night - Friday, Sept 5</li>
+      <li class="list-group-item">Poetry Slam - Saturday, Sept 12</li>
+      <!-- More events -->
+    </ul>
+  </div>
+</section>
+
+<!-- Social Media Section -->
+<section class="py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Follow Us</h2>
+    <a href="#" class="btn btn-outline-dark btn-lg mx-2"
+      ><i class="bi bi-facebook"></i> Facebook</a
+    >
+    <a href="#" class="btn btn-outline-dark btn-lg mx-2"
+      ><i class="bi bi-instagram"></i> Instagram</a
+    >
+    <a href="#" class="btn btn-outline-dark btn-lg mx-2"
+      ><i class="bi bi-twitter"></i> Twitter</a
+    >
+  </div>
+</section>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+{% endblock body %}

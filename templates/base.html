@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Ca-Fi</title>
+    <script src="https://unpkg.com/htmx.org@2.0.2"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../static/images/coffee-grinder.png"
+    />
+    <!-- Bootstrap icons-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../static/css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="{{ url_for('home') }}">CA-FI</a>
+
+        <div class="d-flex align-items-center">
+          {% if status %}
+          <span class="navbar-text me-3"> Welcome, {{ user.username }}! </span>
+          <a href="{{ url_for('logout') }}">
+            <button class="btn btn-outline-dark" type="button">Logout</button>
+          </a>
+          {% if user.id == 1 %}
+          <a href="{{ url_for('add_cafe') }}">
+            <button class="btn btn-outline-dark ms-2" type="button">
+              Add New Cafe
+            </button>
+          </a>
+          {% endif %} {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <!-- Display Flash Messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="mt-3">
+        {% for category, message in messages %}
+        <div
+          class="alert alert-{{ category }} alert-dismissible fade show"
+          role="alert"
+        >
+          {{ message }}
+          <button
+            type="submit"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %} {% block body %} {% endblock body %}
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .querySelectorAll(".alert .btn-close")
+          .forEach(function (button) {
+            button.addEventListener("click", function () {
+              location.reload();
+            });
+          });
+      });
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gmS9h4CkB6Ff2+mEz8rdlmoIBTJmMI5rP15EoIbKoUFeDXMQ/X2eQQrUhfi4Io/g"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
