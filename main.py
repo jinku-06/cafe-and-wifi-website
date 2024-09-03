@@ -285,5 +285,19 @@ def add_cafe():
     return render_template("update.html", cafe=None)
 
 
+@app.route("/delete/<int:id>")
+@login_required
+def delete(id):
+    if not current_user.id == 1:
+        return redirect("/")
+
+    else:
+        page = request.args.get("page", 1, type=int)
+        d_cafe = db.get_or_404(Cafe, id)
+        db.session.delete(d_cafe)
+        db.session.commit()
+        return redirect(f"/?page={page}")
+
+
 if __name__ == "__main__":
     app.run(debug=True)

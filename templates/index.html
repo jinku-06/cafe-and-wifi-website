@@ -71,11 +71,18 @@
             class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"
           >
           {% if admin: %}
+          <div class="container">
           <a
           class="btn btn-outline-dark mt-auto"
           href="{{url_for('update_cafe', id=cafe.id)}}"
           >Update</a
         >
+          <a
+          class="btn btn-outline-dark mt-auto"
+          href="{{url_for('delete', id=cafe.id, page=request.args.get('page', 1))}}"
+          >Delete</a
+        >
+      </div>
           {%else:%}
             <a
               class="btn btn-outline-dark mt-auto"
